@@ -10,7 +10,7 @@
     <description>
         Test Automation task done by Leonid Artemiev with usages of: TestNG, PajeObject pattern, maven builder, parametrization, logging and parallelization
     </description>
-    <url></url>
+    <url>https://github.com/lartemyev/EPAM_WebTask</url>
     <properties>
         <selenium.properties>selenium.properties</selenium.properties>
         <!-- Maven parametrization -->
