@@ -3,17 +3,13 @@ package lib;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lib.exceptions.UnknownBrowserException;
 import lib.exceptions.UnknownPropertyException;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
-
 
 public class Configuration {
     private static final String DRIVER_PROPERTIES = "driver.properties";
@@ -22,25 +18,18 @@ public class Configuration {
 
     private static Properties properties = new Properties();
 
+    @Getter
+    public String baseUrl;
+    @Getter
+    private final Browser browser;
 
-    private String baseUrl;
-    private TestBrowser browser;
-
-    public String getBaseUrl() {
-        return baseUrl;
-    }
-
-    public TestBrowser getBrowser() {
-        return browser;
-    }
-
-    Configuration() {
+    public Configuration() {
         properties = loadPropertiesFile();
         baseUrl = getPropertyOrException(DRIVER_BASEURL);
-        browser = TestBrowser.Browser(getPropertyOrException(DRIVER_BROWSER));
+        browser = Browser.init(getPropertyOrException(DRIVER_BROWSER));
     }
 
-    WebDriver getDriver() {
+    public WebDriver getDriver() {
         WebDriver driver;
         switch (browser) {
             case FIREFOX:
@@ -80,9 +69,7 @@ public class Configuration {
         return getProperty(name, false);
     }
 
-    private static String getPropertyOrException(String name) {
-        return getProperty(name, true);
-    }
+    private static String getPropertyOrException(String name) { return getProperty(name, true); }
 
     private static String getProperty(String name, boolean forceExceptionIfNotDefined) {
         String result;
