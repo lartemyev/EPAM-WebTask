@@ -11,7 +11,7 @@ public class GoogleTest extends BaseTest {
 
     private final String TEST12_SearchKeyWord = "automation";
     private final String TEST2_ExpectedDomain = "testautomationday.com"; // automationgame.com
-    private final String TEST2_SearchToPageNumber = "2";
+    private final String TEST2_SearchToPageNumber = "5";
 
     // @Parameters({"automation"})
     @Test
