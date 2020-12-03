@@ -12,7 +12,7 @@ import java.io.*;
 import java.util.Properties;
 
 public class Configuration {
-    private static final String DRIVER_PROPERTIES = "driver.properties";
+    private static final String PROPERTIES_FILE = "driver.properties";
     private static final String DRIVER_BASEURL = "driver.baseUrl";
     private static final String DRIVER_BROWSER = "driver.browser";
 
@@ -51,8 +51,8 @@ public class Configuration {
 
     private Properties loadPropertiesFile() {
         try {
-            String filename = getPropertyOrNull(DRIVER_PROPERTIES);
-            filename = filename == null? DRIVER_PROPERTIES:filename;
+            String filename = getPropertyOrNull(PROPERTIES_FILE);
+            filename = filename == null? PROPERTIES_FILE :filename;
 
             InputStream stream = getClass().getClassLoader().getResourceAsStream(filename);
             stream = stream == null? new FileInputStream(new File(filename)) : stream;

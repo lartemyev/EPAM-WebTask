@@ -33,8 +33,9 @@ public class BaseTest {
         driver = conf.getDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
-        extentReport = new ExtentReports(System.getProperty("user.dir") + "\\Report.html", true);
+        extentReport = new ExtentReports(System.getProperty("user.dir") + "\\Reports\\Report.html", true);
         extentReport.loadConfig(new File(System.getProperty("user.dir")));
+        webPage = initPage(WebPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -42,7 +43,6 @@ public class BaseTest {
         extentTest = extentReport.startTest(("#" + testNumber++ + ": " + this.getClass().getSimpleName() + " -> " + method.getName()), method.getName());
         extentTest.assignAuthor("Leonid Artemiev");
         extentTest.assignCategory("EPAM Test Automation Task");
-        webPage = initPage(WebPage.class);
         startTC(method.getName());
     }
 

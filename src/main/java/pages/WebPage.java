@@ -20,9 +20,9 @@ public class WebPage extends BaseTest {
     String expectedDomainElementXPath (String keyWord) {
         return "//a[contains(@href, '" + keyWord + "')]";
     }
-    WebElement expectedDomainElement(String keyWord) {
-        return driver.findElements(By.xpath(expectedDomainElementXPath(keyWord))).stream().findAny().get();
-    }
+    //WebElement expectedDomainElement(String keyWord) {
+    //    return driver.findElements(By.xpath(expectedDomainElementXPath(keyWord))).stream().findAny().get();
+    //}
 
     public WebElement expectedFirstLink(String keyWord) {
         return driver.findElement(By.partialLinkText(keyWord));
@@ -37,9 +37,9 @@ public class WebPage extends BaseTest {
         searchField.sendKeys(string, Keys.ENTER);
     }
 
-    public boolean searchDomain(String domainName) {
+    public boolean searchDomain(String domainName, int toPage) {
         boolean foundDomain = false;
-        for (int page = 1; page < 6; page++) {
+        for (int page = 1; page <= toPage; page++) {
             if (page > 1) nextPage.click();
             if (isElementPresent(expectedDomainElementXPath(domainName))) {
                 Log.info("PAGE #" + page + ": Found link on a page - " + domainName);

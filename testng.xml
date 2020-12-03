@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="tests">
+	<test name="Testing task for Automation Engineer (Java + Selenium / WebDriver)">
+	  <classes>
+		<class name="GoogleTest">
+		  <methods>
+			<parameter name="searchKeyWord" value="automation"/>
+			<parameter name="searchToPage" value="5"/>
+			<parameter name="expectedDomain" value="testautomationday.com"/>
+			<include name="TEST1_SearchForKeywordAndVerifyTitle" />
+			<include name="TEST2_SearchForExpectedDomain" />
+		  </methods>
+		</class>
+	  </classes>
+	</test>
+</suite>

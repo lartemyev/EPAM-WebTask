@@ -1,5 +1,6 @@
 import lib.BaseTest;
 import lib.Log;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Test;
 
 import static lib.Log.Verify;
@@ -10,23 +11,30 @@ public class GoogleTest extends BaseTest {
 
     private final String TEST12_SearchKeyWord = "automation";
     private final String TEST2_ExpectedDomain = "testautomationday.com"; // automationgame.com
+    private final String TEST2_SearchToPageNumber = "2";
 
+    // @Parameters({"automation"})
     @Test
-    public void Test_One() {
-        Log.info("Verify that title contains searched word: " + TEST12_SearchKeyWord);
+    public void TEST1_SearchForKeywordAndVerifyTitle(@Optional (TEST12_SearchKeyWord) String searchKeyWord) {
+        Log.info("Verify that title contains searched word: " + searchKeyWord);
         webPage.openBaseUrl();
-        webPage.searchFor(TEST12_SearchKeyWord);
-        webPage.expectedFirstLink(TEST12_SearchKeyWord).click();
-        Verify(getPageTitle().contains(TEST12_SearchKeyWord), true,
-                "Page title contains keyword - " + TEST12_SearchKeyWord);
+        webPage.searchFor(searchKeyWord);
+        webPage.expectedFirstLink(searchKeyWord).click();
+        Verify (getPageTitle().contains(searchKeyWord),
+                true,
+                "Page title contains keyword - " + searchKeyWord);
     }
 
+    // @Parameters ({"automation", "5", "testautomationday.com"})
     @Test
-    public void Test_Two() {
-        Log.info("Verifying that there is expected domain - " + TEST2_ExpectedDomain);
+    public void TEST2_SearchForExpectedDomain (@Optional(TEST12_SearchKeyWord) String searchKeyWord,
+                                               @Optional(TEST2_SearchToPageNumber) String searchToPage,
+                                               @Optional(TEST2_ExpectedDomain) String expectedDomain) {
+        Log.info("Verifying that there is expected domain - " + expectedDomain);
         webPage.openBaseUrl();
-        webPage.searchFor(TEST12_SearchKeyWord);
-        Verify(webPage.searchDomain(TEST2_ExpectedDomain), true,
-                "There is expected domain on search results  pages (page: 1-5) - " + TEST2_ExpectedDomain);
+        webPage.searchFor(searchKeyWord);
+        Verify (webPage.searchDomain(expectedDomain, Integer.parseInt(searchToPage)),
+                true,
+                "There is expected domain on search results  pages (page: 1-5) - " + expectedDomain);
     }
 }

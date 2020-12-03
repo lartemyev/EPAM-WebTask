@@ -55,6 +55,7 @@ public class Log {
                 info(errorMsg);
             }
             else {
+                //info(errorMsg, LogStatus.FAIL);
                 throw new Exception (verifyMessage);
             }
         }
