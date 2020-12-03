@@ -1,4 +1,4 @@
-# EPAM_WebTask
+# EPAM WebTask
 EPAMs Test task by Leonid Artemiev
 
 This is Test Automation task done by Leonid Artemiev with usage of: 
