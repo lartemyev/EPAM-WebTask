@@ -1,17 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Testing task for Automation Engineer (Java + Selenium / WebDriver)" parallel="methods" thread-count="5" >
-	<test name="done by Leonid Artemiev">
+<suite name="Testing task for Automation Engineer (Java + Selenium / WebDriver) done by Leonid Artemiev">
+	<parameter name="searchKeyWord" value="automation"/>
+	<test name="Google the Keyword and Verify Title">
 	  <classes>
-		<class name="GoogleTest">
-		  <methods>
-			<parameter name="searchKeyWord" value="automation"/>
-			<parameter name="searchToPage" value="5"/>
-			<parameter name="expectedDomain" value="testautomationday.com"/>
-			<include name="TEST1_SearchForKeywordAndVerifyTitle" />
-			<include name="TEST2_SearchForExpectedDomain" />
-		  </methods>
-		</class>
+			<class name="GoogleTest">
+				<methods>
+					<include name="TEST1_SearchForKeywordAndVerifyTitle" />
+				</methods>
+			</class>
 	  </classes>
+	</test>
+	<test name="Search for the expected domain">
+		<parameter name="searchToPage" value="5"/>
+		<parameter name="expectedDomain" value="testautomationday.com"/>
+		<classes>
+			<class name="GoogleTest">
+				<methods>
+					<include name="TEST2_SearchForExpectedDomain" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Google the another Keyword and Verify Title">
+		<parameter name="searchKeyWord" value="human"/>
+		<classes>
+			<class name="GoogleTest">
+				<methods>
+					<include name="TEST1_SearchForKeywordAndVerifyTitle" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Search for the expected domain - positive test">
+		<parameter name="searchKeyWord" value="automation"/>
+		<parameter name="searchToPage" value="3"/>
+		<parameter name="expectedDomain" value="en.wikipedia.org"/>
+		<classes>
+			<class name="GoogleTest">
+				<methods>
+					<include name="TEST2_SearchForExpectedDomain" />
+				</methods>
+			</class>
+		</classes>
 	</test>
 </suite>

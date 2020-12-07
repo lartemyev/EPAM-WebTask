@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import static lib.BaseTest.extentTest;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class Log {
 
@@ -56,7 +57,8 @@ public class Log {
             }
             else {
                 //info(errorMsg, LogStatus.FAIL);
-                throw new Exception (verifyMessage);
+                // throw new Exception (verifyMessage);
+                fail(errorMsg);
             }
         }
         return result;

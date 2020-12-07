@@ -8,8 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import java.io.*;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class Configuration {
     private static final String PROPERTIES_FILE = "driver.properties";
@@ -38,14 +43,24 @@ public class Configuration {
                 break;
             case CHROME:
                 WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                break;
+            case CHROME_HEADLESS:
+                WebDriverManager.chromedriver().setup();
+                // no UI mode for Google Chrome
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--headless");
                 options.addArguments("--disable-gpu");
+                // --
                 driver = new ChromeDriver(options);
                 break;
             default:
                 throw new UnknownBrowserException("Cannot create driver for unknown browser type");
         }
+        driver.manage().timeouts().pageLoadTimeout(30L, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(5L, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         return driver;
     }
 

@@ -42,11 +42,11 @@ public class WebPage extends BaseTest {
         for (int page = 1; page <= toPage; page++) {
             if (page > 1) nextPage.click();
             if (isElementPresent(expectedDomainElementXPath(domainName))) {
-                Log.info("PAGE #" + page + ": Found link on a page - " + domainName);
+                Log.info("PAGE #" + page + ": Found link on a page (" + domainName + ")");
                 foundDomain = isElementClickable(driver.findElement(By.xpath(expectedDomainElementXPath(domainName))));
                 break;
             } else
-                Log.info("PAGE #" + page + ": Link is not available - " + domainName);
+                Log.info("PAGE #" + page + ": Link is not available on a page (" + domainName + ")");
         }
         return foundDomain;
     }

@@ -7,17 +7,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Browser {
-    FIREFOX,
-    CHROME;
+    CHROME,
+    CHROME_HEADLESS,
+    FIREFOX;
 
     private static final Map<String, Browser> browserMap = new HashMap<>();
 
     // using static initializer to avoid duplicate load call's
     static {
         String BrowserName_CHROME = "chrome";
+        String BrowserName_CHROME_HEADLESS = "chrome_headless";
         String browserName_FIREFOX = "firefox";
-        browserMap.put(browserName_FIREFOX, FIREFOX);
         browserMap.put(BrowserName_CHROME, CHROME);
+        browserMap.put(BrowserName_CHROME_HEADLESS, CHROME_HEADLESS);
+        browserMap.put(browserName_FIREFOX, FIREFOX);
     }
 
     public static Browser init (String name) {
