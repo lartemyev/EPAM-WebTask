@@ -17,7 +17,7 @@ public class GoogleTest extends BaseTest {
     @Parameters({"searchKeyWord"})
     @Test
     public void TEST1_SearchForKeywordAndVerifyTitle(@Optional (TEST12_SearchKeyWord) String searchKeyWord) {
-        Log.info("Verify that title contains searched word: " + searchKeyWord);
+        Log.info("Verify that title contains keyword: " + searchKeyWord);
         webPage.openBaseUrl();
         webPage.searchFor(searchKeyWord);
         webPage.expectedFirstLink(searchKeyWord).click();
@@ -31,7 +31,7 @@ public class GoogleTest extends BaseTest {
         public void TEST2_SearchForExpectedDomain (@Optional(TEST12_SearchKeyWord) String searchKeyWord,
                                                    @Optional(TEST2_SearchToPageNumber) String searchToPage,
                                                    @Optional(TEST2_ExpectedDomain) String expectedDomain) {
-        Log.info("Verifying that there is expected domain - " + expectedDomain);
+        Log.info("Verifying that google search results have expected domain - " + expectedDomain);
         webPage.openBaseUrl();
         webPage.searchFor(searchKeyWord);
         Verify(webPage.searchDomain(expectedDomain, Integer.parseInt(searchToPage)),

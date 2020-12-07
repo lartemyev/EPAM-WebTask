@@ -11,7 +11,7 @@ import static org.junit.Assert.fail;
 
 public class Log {
 
-    private static Logger Log = Logger.getLogger(Log.class.getName());//
+    private static Logger Log = Logger.getLogger(Log.class.getName());
 
     public static void startTC(String sTestCaseName){
         Log.info("***********************************************");

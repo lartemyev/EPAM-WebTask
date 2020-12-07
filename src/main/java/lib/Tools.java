@@ -9,11 +9,22 @@ public class Tools {
     protected static WebDriver driver = BaseTest.driver;
 
     public static String getPageTitle(){
-        return driver.getTitle().toLowerCase();
+        String returnResult = "";
+        try {
+            returnResult = driver.getTitle().toLowerCase();
+            Log.info("Title of the window: " + returnResult);
+        } catch (Exception e) {}
+        return returnResult;
     }
 
     public static boolean isElementPresent(String xpath) {
-        return driver.findElements(By.xpath(xpath)).size() > 0;
+        boolean returnResult = false;
+        try
+        {
+            returnResult = driver.findElements(By.xpath(xpath)).size() > 0;
+        }
+        catch (Exception e) {}
+        return returnResult;
     }
 
     public static boolean isElementClickable(WebElement element) {

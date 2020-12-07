@@ -64,16 +64,15 @@ public class BaseTest {
         endTC();
         extentReport.endTest(extentTest);
         extentReport.flush();
-;
+        driver.close();
     }
 
     @AfterSuite
     public static void tearDownSuite() {
         extentReport.close();
-        tearDown();
-    }
-    public static void tearDown() {
-        driver.quit();
+        try { // firefox has exception here
+            driver.quit();
+        } catch (Exception e) {}
         extentTest.log(LogStatus.INFO, "Browser closed successfully");
     }
 }

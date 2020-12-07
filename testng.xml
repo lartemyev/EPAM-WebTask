@@ -33,7 +33,6 @@
 		</classes>
 	</test>
 	<test name="Search for the expected domain - positive test">
-		<parameter name="searchKeyWord" value="automation"/>
 		<parameter name="searchToPage" value="3"/>
 		<parameter name="expectedDomain" value="en.wikipedia.org"/>
 		<classes>
