@@ -47,10 +47,10 @@ public class Configuration {
                 break;
             case CHROME_HEADLESS:
                 WebDriverManager.chromedriver().setup();
-                // no UI mode for Google Chrome
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--headless");
-                options.addArguments("--disable-gpu");
+                options.addArguments("--disable-infobars",
+                        "--disable-notifications",  "--disable-extensions",
+                        "--disable-gpu",            "enable-automation");
                 // --
                 driver = new ChromeDriver(options);
                 break;

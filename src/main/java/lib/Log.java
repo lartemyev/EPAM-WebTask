@@ -13,24 +13,23 @@ public class Log {
 
     private static Logger Log = Logger.getLogger(Log.class.getName());
 
-    public static void startTC(String sTestCaseName){
-        Log.info("***********************************************");
-        info("Test STARTED: " + sTestCaseName);
-        Log.info("***********************************************");
+    public static void printTestCaseStart(String sTestCaseName){
+        information("***********************************************");
+        information("Test STARTED: " + sTestCaseName);
+        information("***********************************************");
     }
 
-    public static void endTC(){
-        Log.info("***********************************************");
-        info("Test FINISHED");
-        Log.info("***********************************************");
+    public static void printTestCaseEnd(){
+        information("***********************************************");
+        information("Test FINISHED");
+        information("***********************************************");
     }
 
-    public static void info(String message) {
-        Log.info(message);
-        extentTest.log(LogStatus.INFO, message);
+    public static void information(String message) {
+        information(message, LogStatus.INFO);
     }
 
-    public static void info(String message, LogStatus logStatus) {
+    public static void information(String message, LogStatus logStatus) {
         Log.info(message);
         extentTest.log(logStatus, message);
     }
@@ -45,26 +44,20 @@ public class Log {
         try {
             assertEquals(expected, actual);
             infoMessage = "*** PASSED VERIFICATION FOR: " + verifyMessage;
-            info(infoMessage, LogStatus.PASS);
+            information(infoMessage, LogStatus.PASS);
             result = true;
         } catch (Exception ex) {
             String errorMsg = "*** FAILED VERIFICATION FOR: " + verifyMessage;
-            info("      ACTUAL: " + actual, LogStatus.FAIL);
-            info("    EXPECTED: " + expected, LogStatus.FAIL);
+            information("      ACTUAL: " + actual, LogStatus.FAIL);
+            information("    EXPECTED: " + expected, LogStatus.FAIL);
             if (softVerify)
             {
-                info(errorMsg);
+                information(errorMsg);
             }
             else {
-                //info(errorMsg, LogStatus.FAIL);
-                // throw new Exception (verifyMessage);
                 fail(errorMsg);
             }
         }
         return result;
     }
-
-    //public static void reportInfo(Class T, String message) {
-    //    extentTest = extentReport.startTest(("[TEST]: " + T.getSimpleName() + " -> " + T.getEnclosingMethod().getName()), message);
-    //}
 }

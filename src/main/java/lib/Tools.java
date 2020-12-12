@@ -12,8 +12,10 @@ public class Tools {
         String returnResult = "";
         try {
             returnResult = driver.getTitle().toLowerCase();
-            Log.info("Title of the window: " + returnResult);
-        } catch (Exception e) {}
+            Log.information("Title of the window: " + returnResult);
+        } catch (Exception e) {
+            Log.information("Unable to navigate to the title of the window: " + e.toString());
+        }
         return returnResult;
     }
 
@@ -21,7 +23,7 @@ public class Tools {
         boolean returnResult = false;
         try
         {
-            returnResult = driver.findElements(By.xpath(xpath)).size() > 0;
+            returnResult = !driver.findElements(By.xpath(xpath)).isEmpty();
         }
         catch (Exception e) {}
         return returnResult;

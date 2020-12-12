@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Testing task for Automation Engineer (Java + Selenium / WebDriver) done by Leonid Artemiev">
 	<parameter name="searchKeyWord" value="automation"/>
 	<test name="Google the Keyword and Verify Title">
 	  <classes>
 			<class name="GoogleTest">
 				<methods>
-					<include name="TEST1_SearchForKeywordAndVerifyTitle" />
+					<include name="TEST1_Search_For_Keyword_And_Verify_Title" />
 				</methods>
 			</class>
 	  </classes>
@@ -17,7 +17,7 @@
 		<classes>
 			<class name="GoogleTest">
 				<methods>
-					<include name="TEST2_SearchForExpectedDomain" />
+					<include name="TEST2_Search_For_Expected_Domain" />
 				</methods>
 			</class>
 		</classes>
@@ -27,7 +27,7 @@
 		<classes>
 			<class name="GoogleTest">
 				<methods>
-					<include name="TEST1_SearchForKeywordAndVerifyTitle" />
+					<include name="TEST1_Search_For_Keyword_And_Verify_Title" />
 				</methods>
 			</class>
 		</classes>
@@ -38,7 +38,7 @@
 		<classes>
 			<class name="GoogleTest">
 				<methods>
-					<include name="TEST2_SearchForExpectedDomain" />
+					<include name="TEST2_Search_For_Expected_Domain" />
 				</methods>
 			</class>
 		</classes>

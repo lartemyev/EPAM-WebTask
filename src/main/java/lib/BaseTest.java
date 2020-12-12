@@ -10,13 +10,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import pages.WebPage;
+import pages.GoogleSearchPage;
 
 import java.io.File;
 import java.lang.reflect.Method;
 
-import static lib.Log.endTC;
-import static lib.Log.startTC;
+import static lib.Log.printTestCaseEnd;
+import static lib.Log.printTestCaseStart;
 
 public class BaseTest {
 
@@ -29,7 +29,7 @@ public class BaseTest {
     protected static <T extends BaseTest> T initPage(Class<T> pageClass) {
         return PageFactory.initElements(driver, pageClass);
     }
-    protected static WebPage webPage;
+    protected static GoogleSearchPage webPage;
 
     @BeforeSuite()
     public void setUpSuite() {
@@ -40,7 +40,7 @@ public class BaseTest {
     public void setUp() {
         conf = new Configuration();
         driver = conf.getDriver();
-        webPage = initPage(WebPage.class);
+        webPage = initPage(GoogleSearchPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -49,7 +49,7 @@ public class BaseTest {
         extentTest = extentReport.startTest(("#" + testNumber++ + ": " + this.getClass().getSimpleName() + " -> " + method.getName()), method.getName());
         extentTest.assignAuthor("Leonid Artemiev");
         extentTest.assignCategory("EPAM Test Automation Task");
-        startTC(method.getName());
+        printTestCaseStart(method.getName());
     }
 
     @AfterMethod
@@ -61,7 +61,7 @@ public class BaseTest {
         } else {
             extentTest.log(LogStatus.PASS, "Test PASSED");
         }
-        endTC();
+        printTestCaseEnd();
         extentReport.endTest(extentTest);
         extentReport.flush();
         driver.close();

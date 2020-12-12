@@ -15,3 +15,8 @@ This is Test Automation task done by Leonid Artemiev with usage of:
 * Logging
 * Parallelization
 * Reporting
+
+### Report generation instructions
+* Reporting was implemented using com.relevantcodes.extentreports package
+* Report location is: Reports\Report.html
+* 
