@@ -3,6 +3,7 @@ package lib;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import lib.utils.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
@@ -15,32 +16,32 @@ import pages.GoogleSearchPage;
 import java.io.File;
 import java.lang.reflect.Method;
 
-import static lib.Log.printTestCaseEnd;
-import static lib.Log.printTestCaseStart;
+import static lib.utils.Log.printTestCaseEnd;
+import static lib.utils.Log.printTestCaseStart;
 
 public class BaseTest {
 
-    protected static WebDriver driver;
+    public static WebDriver driver;
     private int testNumber = 1;
-    protected static Configuration conf;
+    public static Driver conf;
     protected static ExtentReports extentReport;
-    protected static ExtentTest extentTest;
+    public static ExtentTest extentTest;
 
     protected static <T extends BaseTest> T initPage(Class<T> pageClass) {
         return PageFactory.initElements(driver, pageClass);
     }
-    protected static GoogleSearchPage webPage;
+    protected static GoogleSearchPage googleSearchPage;
 
     @BeforeSuite()
     public void setUpSuite() {
         extentReport = new ExtentReports(System.getProperty("user.dir") + "\\Reports\\Report.html", true);
-        extentReport.loadConfig(new File(System.getProperty("user.dir")));
+        extentReport.loadConfig(new File(System.getProperty("user.dir") + "\\extent-config.xml"));
     }
 
     public void setUp() {
-        conf = new Configuration();
+        conf = new Driver();
         driver = conf.getDriver();
-        webPage = initPage(GoogleSearchPage.class);
+        googleSearchPage = initPage(GoogleSearchPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -69,10 +70,12 @@ public class BaseTest {
 
     @AfterSuite
     public static void tearDownSuite() {
-        extentReport.close();
         try { // firefox has exception here
             driver.quit();
-        } catch (Exception e) {}
+        } catch (Exception e) {
+            Log.print("Unable to driver.quit()");
+        }
         extentTest.log(LogStatus.INFO, "Browser closed successfully");
+        extentReport.close();
     }
 }
