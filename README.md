@@ -3,8 +3,12 @@
 ## done by Leonid Artemiev
 
 ### How to execute:
-* mvn test via maven
+* mvn test via maven (it's configured to run tests from testng.xml)
 * run via testng.xml
+
+### How to run in parallel:
+* pom.xml has "<parallel>both</parallel>" that mean that it supports parallelization by methods and classes by default
+* just run via testng.xml or maven (as described above)
 
 ### Supported items:
 This is Test Automation task done by Leonid Artemiev with usage of: 
