@@ -1,8 +1,6 @@
-import lib.BaseTest;
+import base.BaseTest;
 import lib.utils.Log;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.GoogleSearchPage;
 
 import static lib.utils.Log.Verify;
@@ -33,7 +31,7 @@ public class GoogleTest extends BaseTest {
                                                      @Optional(TEST2_SearchToPageNumber) String searchToPage,
                                                      @Optional(TEST2_ExpectedDomain) String expectedDomain) {
         GoogleSearchPage googleSearchPage = new GoogleSearchPage(conf.newDriver());
-        Log.print("Verifying that google search results have expected domain - " + expectedDomain);
+        Log.print("Verify that first '" + searchToPage + "' google search results for '" + searchKeyWord + "' keyword have expected domain - " + expectedDomain);
         browser.openBaseUrl();
         googleSearchPage.searchFor(searchKeyWord);
         Verify(googleSearchPage.searchDomain(expectedDomain, Integer.parseInt(searchToPage)),

@@ -1,5 +1,6 @@
 package pages;
 
+import base.BasePage;
 import lib.browser.Browser;
 import lib.utils.Log;
 import org.openqa.selenium.By;
@@ -31,7 +32,10 @@ public class GoogleSearchPage extends BasePage {
     public boolean searchDomain(String domainName, int toPage) {
         boolean foundDomain = false;
         for (int page = 1; page <= toPage; page++) {
-            if (page > 1) nextPage.click();
+            if (page > 1) {
+                nextPage.click();
+                Log.print("PAGE #" + (page - 1) + ": Go to the page #" + page);
+            }
             if (browser.isElementPresent(expectedDomainElementXPath(domainName))) {
                 Log.print("PAGE #" + page + ": Found link on a page (" + domainName + ")");
                 foundDomain = isElementClickable(driver.findElement(By.xpath(expectedDomainElementXPath(domainName))));

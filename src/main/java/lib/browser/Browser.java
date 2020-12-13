@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import static lib.BaseTest.conf;
+import static base.BaseTest.conf;
 
 public class Browser {
 

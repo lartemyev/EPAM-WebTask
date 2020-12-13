@@ -1,4 +1,4 @@
-package lib;
+package lib.drivers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lib.browser.BrowserType;

@@ -1,9 +1,10 @@
-package lib;
+package base;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import lib.browser.Browser;
+import lib.drivers.Driver;
 import lib.utils.Log;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
@@ -23,11 +24,6 @@ public class BaseTest {
     public Browser browser;
     protected static ExtentReports extentReport;
     public static ExtentTest extentTest;
-
-    protected <T extends BaseTest> T initPage(Class<T> pageClass) {
-        return PageFactory.initElements(conf.newDriver(), pageClass);
-    }
-
 
     @BeforeSuite()
     public void setUpSuite() {
