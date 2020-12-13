@@ -1,6 +1,5 @@
 package lib.browser;
 
-import lib.BaseTest;
 import lib.utils.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,17 +9,17 @@ import static lib.BaseTest.conf;
 
 public class Browser {
 
-    private static WebDriver driver = BaseTest.driver;
+    private WebDriver driver = conf.newDriver();
 
-    public static void openBaseUrl() {
+    public void openBaseUrl() {
         driver.get(conf.getBaseUrl());
     }
 
-    public static WebElement expectedFirstLink(String keyWord) {
+    public WebElement expectedFirstLink(String keyWord) {
         return driver.findElement(By.partialLinkText(keyWord));
     }
 
-    public static String getPageTitle() {
+    public String getPageTitle() {
         String returnResult = "";
         try {
             returnResult = driver.getTitle().toLowerCase();
@@ -31,7 +30,7 @@ public class Browser {
         return returnResult;
     }
 
-    public static boolean isElementPresent(String xpath) {
+    public boolean isElementPresent(String xpath) {
         boolean returnResult = false;
         try
         {

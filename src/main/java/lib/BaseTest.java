@@ -3,15 +3,14 @@ package lib;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
+import lib.browser.Browser;
 import lib.utils.Log;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import pages.GoogleSearchPage;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -20,17 +19,15 @@ import static lib.utils.Log.printTestCaseEnd;
 import static lib.utils.Log.printTestCaseStart;
 
 public class BaseTest {
-
-    public static WebDriver driver;
-    private int testNumber = 1;
     public static Driver conf;
+    public Browser browser;
     protected static ExtentReports extentReport;
     public static ExtentTest extentTest;
 
-    protected static <T extends BaseTest> T initPage(Class<T> pageClass) {
-        return PageFactory.initElements(driver, pageClass);
+    protected <T extends BaseTest> T initPage(Class<T> pageClass) {
+        return PageFactory.initElements(conf.newDriver(), pageClass);
     }
-    protected static GoogleSearchPage googleSearchPage;
+
 
     @BeforeSuite()
     public void setUpSuite() {
@@ -40,14 +37,14 @@ public class BaseTest {
 
     public void setUp() {
         conf = new Driver();
-        driver = conf.getDriver();
-        googleSearchPage = initPage(GoogleSearchPage.class);
+        browser = new Browser();
+        PageFactory.initElements(conf.newDriver(), this);// initPage(GoogleSearchPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)
     public void Prepare(Method method) {
         setUp();
-        extentTest = extentReport.startTest(("#" + testNumber++ + ": " + this.getClass().getSimpleName() + " -> " + method.getName()), method.getName());
+        extentTest = extentReport.startTest(("#TEST: " + this.getClass().getSimpleName() + " -> " + method.getName()), method.getName());
         extentTest.assignAuthor("Leonid Artemiev");
         extentTest.assignCategory("EPAM Test Automation Task");
         printTestCaseStart(method.getName());
@@ -65,13 +62,13 @@ public class BaseTest {
         printTestCaseEnd();
         extentReport.endTest(extentTest);
         extentReport.flush();
-        driver.close();
+        conf.newDriver().close();
     }
 
     @AfterSuite
-    public static void tearDownSuite() {
+    public void tearDownSuite() {
         try { // firefox has exception here
-            driver.quit();
+            conf.newDriver().quit();
         } catch (Exception e) {
             Log.print("Unable to driver.quit()");
         }

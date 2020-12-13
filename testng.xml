@@ -22,4 +22,25 @@
 			</class>
 		</classes>
 	</test>
+	<test name="Google the another Keyword and Verify Title">
+		<parameter name="searchKeyWord" value="human"/>
+		<classes>
+			<class name="GoogleTest">
+				<methods>
+					<include name="TEST1_Search_For_Keyword_And_Verify_Title" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Search for the expected domain - positive test">
+		<parameter name="searchToPage" value="3"/>
+		<parameter name="expectedDomain" value="en.wikipedia.org"/>
+		<classes>
+			<class name="GoogleTest">
+				<methods>
+					<include name="TEST2_Search_For_Expected_Domain" />
+				</methods>
+			</class>
+		</classes>
+	</test>
 </suite>
