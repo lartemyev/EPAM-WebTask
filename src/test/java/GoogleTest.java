@@ -34,7 +34,7 @@ public class GoogleTest extends BaseTest {
         Log.print("Verify that first '" + searchToPage + "' google search results for '" + searchKeyWord + "' keyword have expected domain - " + expectedDomain);
         browser.openBaseUrl();
         googleSearchPage.searchFor(searchKeyWord);
-        Verify(googleSearchPage.searchDomain(expectedDomain, Integer.parseInt(searchToPage)),
+        Verify(googleSearchPage.isDomainPresent(expectedDomain, Integer.parseInt(searchToPage)),
                 true,
                 "There is expected domain on search results  pages (page: 1-" + searchToPage +") - " + expectedDomain);
     }

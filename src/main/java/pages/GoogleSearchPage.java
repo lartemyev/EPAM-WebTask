@@ -29,7 +29,7 @@ public class GoogleSearchPage extends BasePage {
         return "//a[contains(@href, '" + keyWord + "')]";
     }
 
-    public boolean searchDomain(String domainName, int toPage) {
+    public boolean isDomainPresent(String domainName, int toPage) {
         boolean foundDomain = false;
         for (int page = 1; page <= toPage; page++) {
             if (page > 1) {

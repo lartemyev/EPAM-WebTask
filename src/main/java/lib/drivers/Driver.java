@@ -5,7 +5,6 @@ import lib.browser.BrowserType;
 import lib.exceptions.UnknownBrowserException;
 import lib.utils.Tools;
 import lombok.Getter;
-import net.thucydides.core.webdriver.DriverSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,7 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class Driver implements DriverSource {
+public class Driver {
 
     private static final String DRIVER_BASEURL = "driver.baseUrl";
     private static final String DRIVER_BROWSER = "driver.browser";
@@ -32,7 +31,6 @@ public class Driver implements DriverSource {
 
     private WebDriver driver;
 
-    @Override
     public WebDriver newDriver() {
         if (driver == null) {
             switch (browser) {
@@ -62,10 +60,5 @@ public class Driver implements DriverSource {
             driver.manage().window().maximize();
         }
         return driver;
-    }
-
-    @Override
-    public boolean takesScreenshots() {
-        return false;
     }
 }

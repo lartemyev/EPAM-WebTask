@@ -8,10 +8,7 @@ import lib.drivers.Driver;
 import lib.utils.Log;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -38,7 +35,7 @@ public class BaseTest {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void Prepare(Method method) {
+    public void prepare(Method method) {
         setUp();
         extentTest = extentReport.startTest(("#TEST: " + this.getClass().getSimpleName() + " -> " + method.getName()), method.getName());
         extentTest.assignAuthor("Leonid Artemiev");
